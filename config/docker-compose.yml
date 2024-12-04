@@ -14,6 +14,7 @@ services:
     volumes:
       - prestashop_data:/var/www/html
 
+
   db:
     image: mysql:5.7
     ports:
