@@ -12,8 +12,7 @@ services:
     depends_on:
       - db
     volumes:
-      - prestashop_data:/var/www/html
-
+      - ../prestashop:/var/www/html
 
   db:
     image: mysql:5.7
@@ -25,10 +24,4 @@ services:
       - MYSQL_USER=prestashop_user
       - MYSQL_PASSWORD=prestashop_password
     volumes:
-      - db_data:/var/lib/mysql
-
-volumes:
-  prestashop_data:
-    driver: local
-  db_data:
-    driver: local
+      - ../mysql:/var/lib/mysql
