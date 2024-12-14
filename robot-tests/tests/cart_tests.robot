@@ -1,5 +1,6 @@
 *** Settings ***
 Library     String
+Library     helpers.py
 Library     SeleniumLibrary
 Suite Setup     Open Home Page
 Suite Teardown      Close Browser
@@ -37,7 +38,8 @@ Add Product To Cart
     Click Button    ${ADD_TO_CART}
     Wait Until Page Contains    Product successfully added to your shopping cart   15
     sleep   0.5
-
+    Click Element                       ${CLOSE}
+    sleep   1
 
 Check Amount In Cart
     [Arguments]     ${goal}
@@ -48,30 +50,43 @@ Check Amount In Cart
     ${quantity_number}=                 Convert To Number       ${quantity_text_clean}
     Should Be Equal As Numbers          ${quantity_number}      ${goal}
 
-
-*** Test Cases ***
 Add 10 Products To Cart From Two Categories
     Click Element                       id=${CATEGORY_ONE}
     Wait Until Page Contains            Filter    10
     Click Element                       xpath=${PRODUCT_ONE}
     Wait Until Page Contains            Quantity
     
-    Add Product To Cart                 4
-    Click Element                       ${CLOSE}
-    sleep   1
-
+    Add Product To Cart                 3
+    
     Click Element                       id=${CATEGORY_TWO}
     Wait Until Page Contains            Filter    10
     Click Element                       xpath=${PRODUCT_TWO}
     Wait Until Page Contains            Quantity
     
-    Add Product To Cart                 6
-    Click Element                       ${CLOSE}
-    sleep   1
+    Add Product To Cart                 7
 
     Check Amount In Cart                10
 
 Search By Name And Add One Random Product
-[Setup]     Add 10 Products To Cart From Two Categories
-    
+    Input Text                      //*[@id="search_widget"]/form/input[2]  bird
+    Press Keys                      //*[@id="search_widget"]/form/input[2]  ENTER
+    Wait Until Page Contains        Search results  15
+    ${product_links}=               Get WebElements    css:.products .product a.thumbnail.product-thumbnail
+    ${random_product}=              Select Random Element    ${product_links}
+    ${product_url}=                 Get Element Attribute    ${random_product}    href
+    Click Element                   ${random_product}
+    Add Product To Cart             1
+
+Remove Three Products From Cart
+    Click Element                               xpath=//*[@id="_desktop_cart"]/div/div/a
+    Wait Until Page Contains                    Shopping Cart   10
+    Click Element                               xpath=//*[@id="main"]/div/div[1]/div/div[2]/ul/li[1]/div/div[3]/div/div[3]/div/a
+
+*** Test Cases ***
+
+Cart Test
+    Add 10 Products To Cart From Two Categories
+    Search By Name And Add One Random Product
+    Remove Three Products From Cart
+    Wait Until Keyword Succeeds    timeout=15s    retry_interval=1s    Check Amount In Cart    8
 

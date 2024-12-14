@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.12.2 on win32)" generated="2024-12-14T21:08:05.642451" rpa="false" schemaversion="5">
+<suite id="s1" name="Cart Tests" source="C:\Users\kamil\OneDrive\Pulpit\pg-biznes\robot-tests\tests\cart_tests.robot">
+<kw name="Open Home Page" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:08:06.128961" level="INFO">Opening browser 'edge' to base url 'http://localhost:8080/en/'.</msg>
+<arg>http://localhost:8080/en/</arg>
+<arg>edge</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-12-14T21:08:06.128961" elapsed="10.556894"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Popular Products</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-14T21:08:16.685855" elapsed="0.020507"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-12-14T21:08:16.706362" elapsed="0.063887"/>
+</kw>
+<status status="PASS" start="2024-12-14T21:08:06.128961" elapsed="10.641288"/>
+</kw>
+<test id="s1-t1" name="Cart Test" line="88">
+<kw name="Add 10 Products To Cart From Two Categories">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:08:16.773292" level="INFO">Clicking element 'id=category-3'.</msg>
+<arg>id=${CATEGORY_ONE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:08:16.772287" elapsed="10.688075"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Filter</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-14T21:08:27.460891" elapsed="0.015615"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:08:27.476506" level="INFO">Clicking element 'xpath=//article[@data-id-product="1"]//a'.</msg>
+<arg>xpath=${PRODUCT_ONE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:08:27.476506" elapsed="10.153385"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Quantity</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-14T21:08:37.629891" elapsed="0.022444"/>
+</kw>
+<kw name="Add Product To Cart">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:08:37.653330" level="INFO">Clicking element 'id=quantity_wanted'.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:08:37.652335" elapsed="0.067979"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:08:37.721316" level="INFO">Sending key(s) ('BACKSPACE',) to id=quantity_wanted element.</msg>
+<msg time="2024-12-14T21:08:38.003108" level="INFO">Pressing special key BACKSPACE to element.</msg>
+<msg time="2024-12-14T21:08:38.003108" level="INFO">Releasing special key BACKSPACE.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<arg>BACKSPACE</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-12-14T21:08:37.721316" elapsed="0.289653"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:08:38.010969" level="INFO">Typing text '3' into text field 'id=quantity_wanted'.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:08:38.010969" elapsed="0.069054"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:08:38.080023" level="INFO">Clicking button 'xpath://button[contains(@class, 'add-to-cart')]'.</msg>
+<arg>${ADD_TO_CART}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:08:38.080023" elapsed="0.069200"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Product successfully added to your shopping cart</arg>
+<arg>15</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-14T21:08:38.149223" elapsed="13.271860"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-12-14T21:08:51.921279" level="INFO">Slept 500 milliseconds.</msg>
+<arg>0.5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-12-14T21:08:51.421083" elapsed="0.500196"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:08:51.921279" level="INFO">Clicking element '//*[@id="blockcart-modal"]/div/div/div[1]/button/span/i'.</msg>
+<arg>${CLOSE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:08:51.921279" elapsed="0.052690"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-12-14T21:08:52.974317" level="INFO">Slept 1 second.</msg>
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-12-14T21:08:51.973969" elapsed="1.000348"/>
+</kw>
+<arg>3</arg>
+<status status="PASS" start="2024-12-14T21:08:37.652335" elapsed="15.321982"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:08:52.974317" level="INFO">Clicking element 'id=category-6'.</msg>
+<arg>id=${CATEGORY_TWO}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:08:52.974317" elapsed="10.964097"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Filter</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-14T21:09:03.938414" elapsed="0.010998"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:03.949412" level="INFO">Clicking element 'xpath=//article[@data-id-product="7"]//a'.</msg>
+<arg>xpath=${PRODUCT_TWO}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:09:03.949412" elapsed="10.509023"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Quantity</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-14T21:09:14.458435" elapsed="0.019258"/>
+</kw>
+<kw name="Add Product To Cart">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:14.478695" level="INFO">Clicking element 'id=quantity_wanted'.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:09:14.477693" elapsed="0.056218"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:14.534912" level="INFO">Sending key(s) ('BACKSPACE',) to id=quantity_wanted element.</msg>
+<msg time="2024-12-14T21:09:14.823137" level="INFO">Pressing special key BACKSPACE to element.</msg>
+<msg time="2024-12-14T21:09:14.823137" level="INFO">Releasing special key BACKSPACE.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<arg>BACKSPACE</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-12-14T21:09:14.534912" elapsed="0.295226"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:14.831140" level="INFO">Typing text '7' into text field 'id=quantity_wanted'.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:09:14.830138" elapsed="0.053328"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:14.884472" level="INFO">Clicking button 'xpath://button[contains(@class, 'add-to-cart')]'.</msg>
+<arg>${ADD_TO_CART}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:09:14.883466" elapsed="0.068117"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Product successfully added to your shopping cart</arg>
+<arg>15</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-14T21:09:14.951583" elapsed="13.888751"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-12-14T21:09:29.341823" level="INFO">Slept 500 milliseconds.</msg>
+<arg>0.5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-12-14T21:09:28.840334" elapsed="0.501489"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:29.342330" level="INFO">Clicking element '//*[@id="blockcart-modal"]/div/div/div[1]/button/span/i'.</msg>
+<arg>${CLOSE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:09:29.341823" elapsed="0.040923"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-12-14T21:09:30.383064" level="INFO">Slept 1 second.</msg>
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-12-14T21:09:29.382746" elapsed="1.000318"/>
+</kw>
+<arg>7</arg>
+<status status="PASS" start="2024-12-14T21:09:14.477693" elapsed="15.905371"/>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:30.402421" level="INFO">${quantity_text} = (10)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:09:30.383570" elapsed="0.018851"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-14T21:09:30.402421" level="INFO">${quantity_text_clean} = 10)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-14T21:09:30.402421" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-14T21:09:30.402421" level="INFO">${quantity_text_clean} = 10</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-14T21:09:30.402421" elapsed="0.001000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-14T21:09:30.403421" level="INFO">${quantity_number} = 10.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-14T21:09:30.403421" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-14T21:09:30.403421" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-12-14T21:09:30.403421" elapsed="0.000000"/>
+</kw>
+<arg>10</arg>
+<status status="PASS" start="2024-12-14T21:09:30.383064" elapsed="0.020357"/>
+</kw>
+<status status="PASS" start="2024-12-14T21:08:16.771289" elapsed="73.632132"/>
+</kw>
+<kw name="Search By Name And Add One Random Product">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:30.404421" level="INFO">Typing text 'bird' into text field '//*[@id="search_widget"]/form/input[2]'.</msg>
+<arg>//*[@id="search_widget"]/form/input[2]</arg>
+<arg>bird</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:09:30.404421" elapsed="0.081100"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:30.485521" level="INFO">Sending key(s) ('ENTER',) to //*[@id="search_widget"]/form/input[2] element.</msg>
+<msg time="2024-12-14T21:09:30.765655" level="INFO">Pressing special key ENTER to element.</msg>
+<msg time="2024-12-14T21:09:30.765655" level="INFO">Releasing special key ENTER.</msg>
+<arg>//*[@id="search_widget"]/form/input[2]</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-12-14T21:09:30.485521" elapsed="10.155405"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Search results</arg>
+<arg>15</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-14T21:09:40.640926" elapsed="0.012998"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:40.664055" level="INFO">${product_links} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="a0d35f8f3d985cb76e63bb36660f74d1", element="f.02B6B54C89F270F85296823D8FD73AE5.d.6E11281C7D34A08EC4A2EB9DD481A617.e.383")&gt;, &lt;selenium.webdri...</msg>
+<var>${product_links}</var>
+<arg>css:.products .product a.thumbnail.product-thumbnail</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:09:40.653924" elapsed="0.010131"/>
+</kw>
+<kw name="Select Random Element" owner="helpers">
+<msg time="2024-12-14T21:09:40.665058" level="INFO">${random_product} = &lt;selenium.webdriver.remote.webelement.WebElement (session="a0d35f8f3d985cb76e63bb36660f74d1", element="f.02B6B54C89F270F85296823D8FD73AE5.d.6E11281C7D34A08EC4A2EB9DD481A617.e.383")&gt;</msg>
+<var>${random_product}</var>
+<arg>${product_links}</arg>
+<status status="PASS" start="2024-12-14T21:09:40.665058" elapsed="0.000000"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:40.672198" level="INFO">${product_url} = http://localhost:8080/en/home-accessories/9-22-mountain-fox-cushion.html#/8-color-white</msg>
+<var>${product_url}</var>
+<arg>${random_product}</arg>
+<arg>href</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:09:40.665058" elapsed="0.007140"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-12-14T21:09:40.673200" level="INFO">Selected Product URL: http://localhost:8080/en/home-accessories/9-22-mountain-fox-cushion.html#/8-color-white</msg>
+<arg>Selected Product URL: ${product_url}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-12-14T21:09:40.673200" elapsed="0.000000"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:40.673200" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="a0d35f8f3d985cb76e63bb36660f74d1", element="f.02B6B54C89F270F85296823D8FD73AE5.d.6E11281C7D34A08EC4A2EB9DD481A617.e.383")&gt;'.</msg>
+<arg>${random_product}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:09:40.673200" elapsed="10.368855"/>
+</kw>
+<kw name="Add Product To Cart">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:51.043057" level="INFO">Clicking element 'id=quantity_wanted'.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:09:51.042055" elapsed="0.075007"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:51.118061" level="INFO">Sending key(s) ('BACKSPACE',) to id=quantity_wanted element.</msg>
+<msg time="2024-12-14T21:09:51.399424" level="INFO">Pressing special key BACKSPACE to element.</msg>
+<msg time="2024-12-14T21:09:51.399424" level="INFO">Releasing special key BACKSPACE.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<arg>BACKSPACE</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-12-14T21:09:51.118061" elapsed="0.288362"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:51.406423" level="INFO">Typing text '1' into text field 'id=quantity_wanted'.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:09:51.406423" elapsed="0.056421"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:09:51.463842" level="INFO">Clicking button 'xpath://button[contains(@class, 'add-to-cart')]'.</msg>
+<arg>${ADD_TO_CART}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:09:51.462844" elapsed="0.065660"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Product successfully added to your shopping cart</arg>
+<arg>15</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-14T21:09:51.528504" elapsed="14.536318"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-12-14T21:10:06.565299" level="INFO">Slept 500 milliseconds.</msg>
+<arg>0.5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-12-14T21:10:06.064822" elapsed="0.500477"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:10:06.565299" level="INFO">Clicking element '//*[@id="blockcart-modal"]/div/div/div[1]/button/span/i'.</msg>
+<arg>${CLOSE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:10:06.565299" elapsed="0.045600"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-12-14T21:10:07.611064" level="INFO">Slept 1 second.</msg>
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-12-14T21:10:06.610899" elapsed="1.000165"/>
+</kw>
+<arg>1</arg>
+<status status="PASS" start="2024-12-14T21:09:51.042055" elapsed="16.569009"/>
+</kw>
+<status status="PASS" start="2024-12-14T21:09:30.403421" elapsed="37.207643"/>
+</kw>
+<kw name="Remove Three Products From Cart">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:10:07.612103" level="INFO">Clicking element 'xpath=//*[@id="_desktop_cart"]/div/div/a'.</msg>
+<arg>xpath=//*[@id="_desktop_cart"]/div/div/a</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:10:07.611064" elapsed="9.476083"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Shopping Cart</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-14T21:10:17.087147" elapsed="0.018101"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-14T21:10:17.106396" level="INFO">Clicking element 'xpath=//*[@id="main"]/div/div[1]/div/div[2]/ul/li[1]/div/div[3]/div/div[3]/div/a'.</msg>
+<arg>xpath=//*[@id="main"]/div/div[1]/div/div[2]/ul/li[1]/div/div[3]/div/div[3]/div/a</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-14T21:10:17.105248" elapsed="0.073217"/>
+</kw>
+<status status="PASS" start="2024-12-14T21:10:07.611064" elapsed="9.567401"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<msg time="2024-12-14T21:10:17.179466" level="FAIL">ValueError: Invalid time string 'timeout=15'.</msg>
+<arg>timeout=15</arg>
+<arg>retry_interval=1</arg>
+<arg>Check Amount In Cart</arg>
+<arg>8</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="FAIL" start="2024-12-14T21:10:17.178465" elapsed="0.001001">ValueError: Invalid time string 'timeout=15'.</status>
+</kw>
+<status status="FAIL" start="2024-12-14T21:08:16.770249" elapsed="120.410218">ValueError: Invalid time string 'timeout=15'.</status>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-12-14T21:10:17.182466" elapsed="2.348907"/>
+</kw>
+<status status="FAIL" start="2024-12-14T21:08:05.643449" elapsed="133.887924"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Cart Tests">Cart Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
