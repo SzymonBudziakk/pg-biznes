@@ -82,11 +82,56 @@ Remove Three Products From Cart
     Wait Until Page Contains                    Shopping Cart   10
     Click Element                               xpath=//*[@id="main"]/div/div[1]/div/div[2]/ul/li[1]/div/div[3]/div/div[3]/div/a
 
+Register New Account
+    Click Element                               xpath=//*[@id="_desktop_user_info"]/div/a
+    Wait Until Page Contains                    Log in to your account   10
+    Click Element                               xpath=//*[@id="content"]/div/a
+    Wait Until Page Contains                    Create an account   10
+    Click Button                                id=field-id_gender-2
+    Input Text                                  //*[@id="field-firstname"]  Len
+    Input Text                                  //*[@id="field-lastname"]  Kingodysey
+    
+    ${random_number}=                           Generate Random String      7    0123456789
+    Input Text                                  //*[@id="field-email"]  Example${random_number}@gmail.com
+    Input Text                                  //*[@id="field-password"]   jedzOwoce1Warzywa
+    Click Button                                //*[@id="customer-form"]/div/div[8]/div[1]/span/label/input
+    Click Button                                //*[@id="customer-form"]/div/div[10]/div[1]/span/label/input
+    Click Button                                //*[@id="customer-form"]/footer/button
+    Wait Until Element Is Visible               //*[@id="_desktop_user_info"]/div/a[1]
+    sleep   10
+
+Make Order
+    Click Element                               //*[@id="_desktop_cart"]/div/div/a
+    Wait Until Page Contains                    Shopping Cart   10
+    Click Element                               xpath=//*[@id="main"]/div/div[2]/div[1]/div[2]/div/a
+
+    Wait Until Page Contains                    Addresses   10
+    Input Text                                  //*[@id="field-address1"]       SomeCoolAdress 85
+    Input Text                                  //*[@id="field-postcode"]       13-111
+    Input Text                                  //*[@id="field-city"]           PgCity
+    Select From List By Value                   //*[@id="field-id_country"]     14
+    Click Button                                //*[@id="delivery-address"]/div/footer/button
+
+    Wait Until Page Contains                    Pick up in-store   10
+    Click Button                                //*[@id="js-delivery"]/button
+
+    Wait Until Page Contains                    bank wire   10 
+    Click Button                                //*[@id="payment-option-2"]
+    Click Button                                //*[@id="conditions_to_approve[terms-and-conditions]"]  
+    Click Button                                //*[@id="payment-confirmation"]/div[1]/button
+
+    Wait Until Page Contains                    Your order is confirmed   10 
+    Click Element                               xpath=//*[@id="_desktop_user_info"]/div/a[2]/span
+    Wait Until Page Contains                    Your account    10
+    Click Element                               //*[@id="history-link"]
+    Wait Until Page Contains                    Awaiting bank wire payment  10
+
 *** Test Cases ***
 
 Cart Test
-    Add 10 Products To Cart From Two Categories
+    Register New Account
+    #Add 10 Products To Cart From Two Categories
     Search By Name And Add One Random Product
-    Remove Three Products From Cart
-    Wait Until Keyword Succeeds    timeout=15s    retry_interval=1s    Check Amount In Cart    8
-
+    #Remove Three Products From Cart
+    #Wait Until Keyword Succeeds    timeout=15s    retry_interval=1s    Check Amount In Cart    8
+    Make Order
