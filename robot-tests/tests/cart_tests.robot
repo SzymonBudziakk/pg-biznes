@@ -35,11 +35,11 @@ Add Product To Cart
     Click Element                       id=${PRODUCT_COUNT_FIELD}
     Press Keys                          id=${PRODUCT_COUNT_FIELD}   BACKSPACE
     Input Text                          id=${PRODUCT_COUNT_FIELD}   ${count}
-    Click Button    ${ADD_TO_CART}
-    Wait Until Page Contains    Product successfully added to your shopping cart   15
-    sleep   0.5
+    Click Button                        ${ADD_TO_CART}
+    Wait Until Page Contains            Product successfully added to your shopping cart   30
+    sleep   2
     Click Element                       ${CLOSE}
-    sleep   1
+    sleep   2
 
 Check Amount In Cart
     [Arguments]     ${goal}
@@ -130,8 +130,8 @@ Make Order
 
 Cart Test
     Register New Account
-    #Add 10 Products To Cart From Two Categories
+    Add 10 Products To Cart From Two Categories
     Search By Name And Add One Random Product
-    #Remove Three Products From Cart
-    #Wait Until Keyword Succeeds    timeout=15s    retry_interval=1s    Check Amount In Cart    8
+    Remove Three Products From Cart
+    Wait Until Keyword Succeeds    15 sec   1 sec   Check Amount In Cart    8
     Make Order
