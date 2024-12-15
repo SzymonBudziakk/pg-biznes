@@ -11,31 +11,59 @@ from io import BytesIO
 BASE_URL = "https://wloczykijki.pl"
 
 class Produkt:
-    def __init__(self, nazwa, cena, zdjecie, link, driver):
+    def __init__(self, nazwa, cena, zdjecie, link, driver, czy2zdjecia):
         self.nazwa = nazwa
         self.cena = cena
         self.opis = ''
         self.zdjecie = BASE_URL+zdjecie
         self.zdjecie2 = ''
+        self.zdjecie3 = ''
         self.link = link
         self.driver = driver
-        self.pobierz_szczegolowe_dane()
+        self.pobierz_szczegolowe_dane(czy2zdjecia)
 
     def fetch(self):
         self.driver.get(self.link)
         return self.driver.page_source
 
 
-    def pobierz_szczegolowe_dane(self):
+    def pobierz_szczegolowe_dane(self,czy2zdjecia):
         page_source = self.fetch()
         soup = BeautifulSoup(page_source, "html.parser")
 
-        img_tag = (soup.find('img', class_='photo'))
+        if not czy2zdjecia:
+            img_tag = (soup.find('img', class_='photo'))
 
-        if img_tag:
-            img_src = img_tag.get('src')
-            if img_src:
-                self.zdjecie2 = BASE_URL+img_src
+            if img_tag:
+                img_src = img_tag.get('src')
+                if img_src:
+                    self.zdjecie2 = BASE_URL+img_src
+        else:
+            gallery_div = soup.find('div', class_='innersmallgallery')
+            if gallery_div:
+                list_items = gallery_div.find('ul').find_all('li')
+                i = 0
+                for li in list_items:
+                    if i >= 2:
+                        break
+                    a_tag = li.find('a')
+                    if a_tag:
+                        img_tag = a_tag.find('img')
+                        data_img_name = img_tag.get('data-img-name')
+                        if i ==0:
+                            self.zdjecie2 = BASE_URL + data_img_name
+                        else:
+                            self.zdjecie3 = BASE_URL + data_img_name
+                    i+=1
+            else:
+                img_tag = (soup.find('img', class_='photo'))
+
+                if img_tag:
+                    img_src = img_tag.get('src')
+                    if img_src:
+                        self.zdjecie2 = BASE_URL + img_src
+
+
 
         description_div = soup.find('div', class_='resetcss', itemprop='description')
         text = ''
@@ -59,7 +87,7 @@ class Podkategoria:
         driver.get(self.link)
         return driver.page_source
 
-    def scrapuj_produkty(self,driver):
+    def scrapuj_produkty(self,driver,czy2zdjecia):
         page = 1
         main_url = self.link + "/{page}"
         max_page = 1
@@ -94,7 +122,7 @@ class Podkategoria:
                 if image_url:
                     src = image_url.get('data-src')
                 produkt_link = product_div.find('a', class_='prodimage')['href'] if product_div.find('a',class_='prodimage') else 'Brak linku'
-                self.produkty.append(Produkt(nazwa,cena,str(src),BASE_URL+produkt_link,driver))
+                self.produkty.append(Produkt(nazwa,cena,str(src),BASE_URL+produkt_link,driver,czy2zdjecia))
 
             if page == 1:
                 paginator = soup.find('ul', class_='paginator')
@@ -110,7 +138,7 @@ class Podkategoria:
                         max_page = max(page_numbers)
             page += 1
 
-    def scrapuj_czesc_produktow(self,driver,liczba_stron):
+    def scrapuj_czesc_produktow(self,driver,liczba_stron,czy2zdjecia):
         page = 1
         main_url = self.link + "/{page}"
         max_page = 1
@@ -145,7 +173,7 @@ class Podkategoria:
                 if image_url:
                     src = image_url.get('data-src')
                 produkt_link = product_div.find('a', class_='prodimage')['href'] if product_div.find('a',class_='prodimage') else 'Brak linku'
-                self.produkty.append(Produkt(nazwa,cena,str(src),BASE_URL+produkt_link,driver))
+                self.produkty.append(Produkt(nazwa,cena,str(src),BASE_URL+produkt_link,driver,czy2zdjecia))
 
             if page == 1:
                 paginator = soup.find('ul', class_='paginator')
@@ -208,49 +236,94 @@ class Kategoria:
             print("Blad zapisu")
 
 
-    def JSON_Podkateogria(self, numer_podkategorii):
+    def JSON_Podkateogria(self, numer_podkategorii,czy2zdjecia):
         nazwa_pliku = self.nazwa + '-' + self.podkategorie[numer_podkategorii].nazwa + '.json'
-        pola = ["nazwa", "cena", "opis", "zdjecie", "zdjecie2" ]
-        try:
-            dane = [{pole: getattr(produkt, pole, None) for pole in pola} for produkt in self.podkategorie[numer_podkategorii].produkty]
+        if not czy2zdjecia:
+            pola = ["nazwa", "cena", "opis", "zdjecie", "zdjecie2" ]
+            try:
+                dane = [{pole: getattr(produkt, pole, None) for pole in pola} for produkt in self.podkategorie[numer_podkategorii].produkty]
 
-            with open(nazwa_pliku, 'w', encoding='utf-8') as plik:
-                json.dump(dane, plik, ensure_ascii=False, indent=4)
+                with open(nazwa_pliku, 'w', encoding='utf-8') as plik:
+                    json.dump(dane, plik, ensure_ascii=False, indent=4)
 
-        except Exception as e:
-            print("Blad zapisu")
+            except Exception as e:
+                print("Blad zapisu")
+        else:
+            pola = ["nazwa", "cena", "opis", "zdjecie", "zdjecie2", "zdjecie3"]
+            try:
+                dane = [{pole: getattr(produkt, pole, None) for pole in pola} for produkt in
+                        self.podkategorie[numer_podkategorii].produkty]
 
-    def generuj_jpg(self, nr_podkategorii):
+                with open(nazwa_pliku, 'w', encoding='utf-8') as plik:
+                    json.dump(dane, plik, ensure_ascii=False, indent=4)
+
+            except Exception as e:
+                print("Blad zapisu")
+
+    def generuj_jpg(self, nr_podkategorii,czy2zdjecia):
 
         folder = self.nazwa+ '_' + self.podkategorie[nr_podkategorii].nazwa + '-images'
         json_file = self.nazwa + '-' + self.podkategorie[nr_podkategorii].nazwa + '.json'
         os.makedirs(folder, exist_ok=True)
         with open(json_file,'r',encoding='utf-8') as f:
             data = json.load(f)
+        if czy2zdjecia:
+            for i, pr in enumerate(data):
+                try:
+                    link1 = pr.get('zdjecie')
+                    link2 = pr.get('zdjecie2')
 
-        for i, pr in enumerate(data):
-            try:
-                link1 = pr.get('zdjecie')
-                link2 = pr.get('zdjecie2')
+                    if link1:
+                        rs = requests.get(link1)
+                        rs.raise_for_status()
+                        img = Image.open(BytesIO(rs.content))
+                        img_jpg_path1 = os.path.join(folder, f"image_{i}_1.jpg")
+                        img.convert("RGB").save(img_jpg_path1, "JPEG")
+                        pr['zdjecie_jpg'] =  img_jpg_path1
 
-                if link1:
-                    rs = requests.get(link1)
-                    rs.raise_for_status()
-                    img = Image.open(BytesIO(rs.content))
-                    img_jpg_path1 = os.path.join(folder, f"image_{i}_1.jpg")
-                    img.convert("RGB").save(img_jpg_path1, "JPEG")
-                    pr['zdjecie_jpg'] =  img_jpg_path1
+                    if link2:
+                        rs = requests.get(link2)
+                        rs.raise_for_status()
+                        img = Image.open(BytesIO(rs.content))
+                        img_jpg_path2 = os.path.join(folder, f"image_{i}_2.jpg")
+                        img.convert("RGB").save(img_jpg_path2, "JPEG")
+                        pr['zdjecie2_jpg'] = img_jpg_path2
 
-                if link2:
-                    rs = requests.get(link2)
-                    rs.raise_for_status()
-                    img = Image.open(BytesIO(rs.content))
-                    img_jpg_path2 = os.path.join(folder, f"image_{i}_2.jpg")
-                    img.convert("RGB").save(img_jpg_path2, "JPEG")
-                    pr['zdjecie2_jpg'] = img_jpg_path2
+                    if pr.get('zdjecie3') != "":
+                        link3 = pr.get('zdjecie3')
+                        rs = requests.get(link3)
+                        rs.raise_for_status()
+                        img = Image.open(BytesIO(rs.content))
+                        img_jpg_path3 = os.path.join(folder, f"image_{i}_3.jpg")
+                        img.convert("RGB").save(img_jpg_path3, "JPEG")
+                        pr['zdjecie3_jpg'] = img_jpg_path3
 
-            except Exception as e:
-                print('blad przy konwersji zdjec')
+                except Exception as e:
+                    print('blad przy konwersji zdjec')
+        else:
+            for i, pr in enumerate(data):
+                try:
+                    link1 = pr.get('zdjecie')
+                    link2 = pr.get('zdjecie2')
+
+                    if link1:
+                        rs = requests.get(link1)
+                        rs.raise_for_status()
+                        img = Image.open(BytesIO(rs.content))
+                        img_jpg_path1 = os.path.join(folder, f"image_{i}_1.jpg")
+                        img.convert("RGB").save(img_jpg_path1, "JPEG")
+                        pr['zdjecie_jpg'] = img_jpg_path1
+
+                    if link2:
+                        rs = requests.get(link2)
+                        rs.raise_for_status()
+                        img = Image.open(BytesIO(rs.content))
+                        img_jpg_path2 = os.path.join(folder, f"image_{i}_2.jpg")
+                        img.convert("RGB").save(img_jpg_path2, "JPEG")
+                        pr['zdjecie2_jpg'] = img_jpg_path2
+                except Exception as e:
+                    print('blad przy konwersji zdjec')
+
         with open(json_file,'w', encoding='utf-8') as f:
             json.dump(data,f,ensure_ascii=False, indent=4)
 
