@@ -1,0 +1,1326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.12.2 on win32)" generated="2024-12-18T05:13:55.379910" rpa="false" schemaversion="5">
+<suite id="s1" name="Cart Tests" source="C:\Users\kamil\OneDrive\Pulpit\pg-biznes\robot-tests\tests\cart_tests.robot">
+<kw name="Open Home Page" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:13:55.803402" level="INFO">Opening browser 'edge' to base url 'http://localhost:8080/en/'.</msg>
+<arg>http://localhost:8080/en/</arg>
+<arg>edge</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-12-18T05:13:55.803402" elapsed="13.544722"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Custom Text Block</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:14:09.348124" elapsed="0.015322"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-12-18T05:14:09.363446" elapsed="0.068788"/>
+</kw>
+<status status="PASS" start="2024-12-18T05:13:55.802404" elapsed="13.629830"/>
+</kw>
+<test id="s1-t1" name="Cart Test" line="127">
+<kw name="Add 10 Products To Cart From Two Categories">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:14:09.436241" level="INFO">Clicking element 'xpath=//*[@id="category-139"]/a'.</msg>
+<arg>xpath=${CATEGORY_ONE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:14:09.434232" elapsed="15.387680"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Sort by</arg>
+<arg>100</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:14:24.821912" elapsed="0.023493"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:14:24.845405" level="INFO">Clicking element 'xpath=//*[@id="js-product-list"]/div[1]/div[1]/article/div/div[2]/h2/a'.</msg>
+<arg>xpath=${PRODUCT_ONE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:14:24.845405" elapsed="14.398123"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Quantity</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:14:39.243528" elapsed="0.035045"/>
+</kw>
+<kw name="Add Product To Cart">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:14:39.279576" level="INFO">Clicking element 'id=quantity_wanted'.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:14:39.278573" elapsed="0.095935"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:14:39.375508" level="INFO">Sending key(s) ('BACKSPACE',) to id=quantity_wanted element.</msg>
+<msg time="2024-12-18T05:14:39.662961" level="INFO">Pressing special key BACKSPACE to element.</msg>
+<msg time="2024-12-18T05:14:39.662961" level="INFO">Releasing special key BACKSPACE.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<arg>BACKSPACE</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-12-18T05:14:39.374508" elapsed="0.296627"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:14:39.672135" level="INFO">Typing text '3' into text field 'id=quantity_wanted'.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:14:39.672135" elapsed="0.076558"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:14:39.748693" level="INFO">Clicking button 'xpath://button[contains(@class, 'add-to-cart')]'.</msg>
+<arg>${ADD_TO_CART}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:14:39.748693" elapsed="0.083111"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Product successfully added to your shopping cart</arg>
+<arg>30</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:14:39.832805" elapsed="21.083654"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-12-18T05:15:02.917567" level="INFO">Slept 2 seconds.</msg>
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-12-18T05:15:00.917467" elapsed="2.000100"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:15:02.917567" level="INFO">Clicking element '//*[@id="blockcart-modal"]/div/div/div[1]/button/span/i'.</msg>
+<arg>${CLOSE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:15:02.917567" elapsed="0.061885"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-12-18T05:15:04.981083" level="INFO">Slept 2 seconds.</msg>
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-12-18T05:15:02.979452" elapsed="2.001718"/>
+</kw>
+<arg>3</arg>
+<status status="PASS" start="2024-12-18T05:14:39.278573" elapsed="25.702597"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:15:04.981695" level="INFO">Clicking element 'xpath=//*[@id="category-114"]/a'.</msg>
+<arg>xpath=${CATEGORY_TWO}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:15:04.981170" elapsed="16.751209"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Sort by</arg>
+<arg>100</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:15:21.732910" elapsed="0.025916"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:15:21.759884" level="INFO">Clicking element 'xpath=//*[@id="js-product-list"]/div[1]/div[1]/article/div/div[2]/h2/a'.</msg>
+<arg>xpath=${PRODUCT_TWO}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:15:21.759347" elapsed="15.758961"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Quantity</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:15:37.518308" elapsed="0.023039"/>
+</kw>
+<kw name="Add Product To Cart">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:15:37.542348" level="INFO">Clicking element 'id=quantity_wanted'.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:15:37.541347" elapsed="0.074359"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:15:37.616707" level="INFO">Sending key(s) ('BACKSPACE',) to id=quantity_wanted element.</msg>
+<msg time="2024-12-18T05:15:37.893143" level="INFO">Pressing special key BACKSPACE to element.</msg>
+<msg time="2024-12-18T05:15:37.893143" level="INFO">Releasing special key BACKSPACE.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<arg>BACKSPACE</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-12-18T05:15:37.615706" elapsed="0.285858"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:15:37.902563" level="INFO">Typing text '7' into text field 'id=quantity_wanted'.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:15:37.901564" elapsed="0.068917"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:15:37.971528" level="INFO">Clicking button 'xpath://button[contains(@class, 'add-to-cart')]'.</msg>
+<arg>${ADD_TO_CART}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:15:37.970481" elapsed="0.083804"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Product successfully added to your shopping cart</arg>
+<arg>30</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:15:38.054285" elapsed="22.766688"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-12-18T05:16:02.821270" level="INFO">Slept 2 seconds.</msg>
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-12-18T05:16:00.820973" elapsed="2.000407"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:16:02.821380" level="INFO">Clicking element '//*[@id="blockcart-modal"]/div/div/div[1]/button/span/i'.</msg>
+<arg>${CLOSE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:16:02.821380" elapsed="0.059791"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-12-18T05:16:04.882240" level="INFO">Slept 2 seconds.</msg>
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-12-18T05:16:02.881171" elapsed="2.001069"/>
+</kw>
+<arg>7</arg>
+<status status="PASS" start="2024-12-18T05:15:37.541347" elapsed="27.340893"/>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:16:04.907207" level="INFO">${quantity_text} = (10)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:16:04.882240" elapsed="0.024967"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:16:04.907207" level="INFO">${quantity_text_clean} = 10)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:16:04.907207" elapsed="0.001002"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:16:04.908209" level="INFO">${quantity_text_clean} = 10</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:16:04.908209" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:16:04.908209" level="INFO">${quantity_number} = 10.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:16:04.908209" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:16:04.909209" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-12-18T05:16:04.908209" elapsed="0.001000"/>
+</kw>
+<arg>10</arg>
+<status status="PASS" start="2024-12-18T05:16:04.882240" elapsed="0.026969"/>
+</kw>
+<status status="PASS" start="2024-12-18T05:14:09.434232" elapsed="115.474977"/>
+</kw>
+<kw name="Search By Name And Add One Random Product">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:16:04.910209" level="INFO">Typing text 'guzik' into text field '//*[@id="search_widget"]/form/input[2]'.</msg>
+<arg>//*[@id="search_widget"]/form/input[2]</arg>
+<arg>guzik</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:16:04.909209" elapsed="0.096694"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:16:05.005903" level="INFO">Sending key(s) ('ENTER',) to //*[@id="search_widget"]/form/input[2] element.</msg>
+<msg time="2024-12-18T05:16:05.280227" level="INFO">Pressing special key ENTER to element.</msg>
+<msg time="2024-12-18T05:16:05.280227" level="INFO">Releasing special key ENTER.</msg>
+<arg>//*[@id="search_widget"]/form/input[2]</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-12-18T05:16:05.005903" elapsed="16.205361"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Search results</arg>
+<arg>150</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:16:21.211264" elapsed="0.014291"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:16:21.237696" level="INFO">${product_links} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="8e6156732db86d1ca343a76832833d64", element="f.C22EE4D72F050306082EC0EDE1D2FC02.d.02682ECF20CC01DC28228B45A76E9045.e.324")&gt;, &lt;selenium.webdri...</msg>
+<var>${product_links}</var>
+<arg>css:.products .product a.thumbnail.product-thumbnail</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:16:21.225555" elapsed="0.012141"/>
+</kw>
+<kw name="Select Random Element" owner="helpers">
+<msg time="2024-12-18T05:16:21.237696" level="INFO">${random_product} = &lt;selenium.webdriver.remote.webelement.WebElement (session="8e6156732db86d1ca343a76832833d64", element="f.C22EE4D72F050306082EC0EDE1D2FC02.d.02682ECF20CC01DC28228B45A76E9045.e.330")&gt;</msg>
+<var>${random_product}</var>
+<arg>${product_links}</arg>
+<status status="PASS" start="2024-12-18T05:16:21.237696" elapsed="0.000000"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:16:21.244850" level="INFO">${product_url} = http://localhost:8080/en/guziki/1075-drops-guzik-drewniany-511-20-mm.html</msg>
+<var>${product_url}</var>
+<arg>${random_product}</arg>
+<arg>href</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:16:21.237696" elapsed="0.008154"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:16:21.245850" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="8e6156732db86d1ca343a76832833d64", element="f.C22EE4D72F050306082EC0EDE1D2FC02.d.02682ECF20CC01DC28228B45A76E9045.e.330")&gt;'.</msg>
+<arg>${random_product}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:16:21.245850" elapsed="15.181767"/>
+</kw>
+<kw name="Add Product To Cart">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:16:36.428619" level="INFO">Clicking element 'id=quantity_wanted'.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:16:36.427617" elapsed="0.095924"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:16:36.524541" level="INFO">Sending key(s) ('BACKSPACE',) to id=quantity_wanted element.</msg>
+<msg time="2024-12-18T05:16:36.804485" level="INFO">Pressing special key BACKSPACE to element.</msg>
+<msg time="2024-12-18T05:16:36.804485" level="INFO">Releasing special key BACKSPACE.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<arg>BACKSPACE</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-12-18T05:16:36.523541" elapsed="0.291487"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:16:36.815903" level="INFO">Typing text '1' into text field 'id=quantity_wanted'.</msg>
+<arg>id=${PRODUCT_COUNT_FIELD}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:16:36.815397" elapsed="0.068882"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:16:36.885282" level="INFO">Clicking button 'xpath://button[contains(@class, 'add-to-cart')]'.</msg>
+<arg>${ADD_TO_CART}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:16:36.885282" elapsed="0.076010"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Product successfully added to your shopping cart</arg>
+<arg>30</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:16:36.961292" elapsed="20.444604"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-12-18T05:16:59.406191" level="INFO">Slept 2 seconds.</msg>
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-12-18T05:16:57.405896" elapsed="2.000295"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:16:59.406191" level="INFO">Clicking element '//*[@id="blockcart-modal"]/div/div/div[1]/button/span/i'.</msg>
+<arg>${CLOSE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:16:59.406191" elapsed="0.047678"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-12-18T05:17:01.454166" level="INFO">Slept 2 seconds.</msg>
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-12-18T05:16:59.453869" elapsed="2.000297"/>
+</kw>
+<arg>1</arg>
+<status status="PASS" start="2024-12-18T05:16:36.427617" elapsed="25.026549"/>
+</kw>
+<status status="PASS" start="2024-12-18T05:16:04.909209" elapsed="56.544957"/>
+</kw>
+<kw name="Register New Account">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:17:01.454166" level="INFO">Clicking element 'xpath=//*[@id="_desktop_user_info"]/div/a'.</msg>
+<arg>xpath=//*[@id="_desktop_user_info"]/div/a</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:17:01.454166" elapsed="14.768488"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Log in to your account</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:17:16.223657" elapsed="0.012996"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:17:16.237653" level="INFO">Clicking element 'xpath=//*[@id="content"]/div/a'.</msg>
+<arg>xpath=//*[@id="content"]/div/a</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:17:16.236653" elapsed="11.493589"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Create an account</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:17:27.730242" elapsed="0.014998"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:17:27.745240" level="INFO">Clicking button 'id=field-id_gender-2'.</msg>
+<arg>id=field-id_gender-2</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:17:27.745240" elapsed="0.076500"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:17:27.822739" level="INFO">Typing text 'Len' into text field '//*[@id="field-firstname"]'.</msg>
+<arg>//*[@id="field-firstname"]</arg>
+<arg>Len</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:17:27.821740" elapsed="0.084784"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:17:27.906524" level="INFO">Typing text 'Kingodysey' into text field '//*[@id="field-lastname"]'.</msg>
+<arg>//*[@id="field-lastname"]</arg>
+<arg>Kingodysey</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:17:27.906524" elapsed="0.096759"/>
+</kw>
+<kw name="Generate Random String" owner="String">
+<msg time="2024-12-18T05:17:28.004283" level="INFO">${random_number} = 7064733</msg>
+<var>${random_number}</var>
+<arg>7</arg>
+<arg>0123456789</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2024-12-18T05:17:28.003283" elapsed="0.001000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:17:28.004283" level="INFO">Typing text 'Example7064733@gmail.com' into text field '//*[@id="field-email"]'.</msg>
+<arg>//*[@id="field-email"]</arg>
+<arg>Example${random_number}@gmail.com</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:17:28.004283" elapsed="0.118199"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:17:28.123484" level="INFO">Typing text 'jedzOwoce1Warzywa' into text field '//*[@id="field-password"]'.</msg>
+<arg>//*[@id="field-password"]</arg>
+<arg>jedzOwoce1Warzywa</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:17:28.122482" elapsed="0.108833"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:17:28.231315" level="INFO">Clicking button '//*[@id="customer-form"]/div/div[8]/div[1]/span/label/input'.</msg>
+<arg>//*[@id="customer-form"]/div/div[8]/div[1]/span/label/input</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:17:28.231315" elapsed="0.088970"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:17:28.320285" level="INFO">Clicking button '//*[@id="customer-form"]/div/div[10]/div[1]/span/label/input'.</msg>
+<arg>//*[@id="customer-form"]/div/div[10]/div[1]/span/label/input</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:17:28.320285" elapsed="0.073551"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:17:28.393836" level="INFO">Clicking button '//*[@id="customer-form"]/footer/button'.</msg>
+<arg>//*[@id="customer-form"]/footer/button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:17:28.393836" elapsed="28.480853"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>//*[@id="_desktop_user_info"]/div/a[1]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-12-18T05:17:56.874689" elapsed="0.025995"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:17:56.900684" level="INFO">Clicking element '//*[@id="_desktop_logo"]/h1/a'.</msg>
+<arg>//*[@id="_desktop_logo"]/h1/a</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:17:56.900684" elapsed="9.471562"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-12-18T05:18:16.372354" level="INFO">Slept 10 seconds.</msg>
+<arg>10</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-12-18T05:18:06.372246" elapsed="10.000108"/>
+</kw>
+<status status="PASS" start="2024-12-18T05:17:01.454166" elapsed="74.918188"/>
+</kw>
+<kw name="Remove Three Products From Cart">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:16.372354" level="INFO">Clicking element 'xpath=//*[@id="_desktop_cart"]/div/div/a'.</msg>
+<arg>xpath=//*[@id="_desktop_cart"]/div/div/a</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:16.372354" elapsed="12.268593"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Shopping Cart</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:18:28.640947" elapsed="0.022129"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:28.664074" level="INFO">Clicking element 'xpath=//*[@id="main"]/div/div[1]/div/div[2]/ul/li[1]/div/div[3]/div/div[3]/div/a'.</msg>
+<arg>xpath=//*[@id="main"]/div/div[1]/div/div[2]/ul/li[1]/div/div[3]/div/div[3]/div/a</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:28.664074" elapsed="0.090712"/>
+</kw>
+<status status="PASS" start="2024-12-18T05:18:16.372354" elapsed="12.382432"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:28.817569" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:28.756784" elapsed="0.060785"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:28.818568" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:28.817569" elapsed="0.000999"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:28.818568" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:28.818568" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:28.819567" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:28.819567" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:28.819567" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:28.820568" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:28.819567" elapsed="0.001001">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:28.756784" elapsed="0.064790">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:29.841416" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:29.821689" elapsed="0.019727"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:29.842414" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:29.842414" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:29.843413" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:29.842414" elapsed="0.000999"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:29.843413" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:29.843413" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:29.844412" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:29.844412" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:29.844412" elapsed="0.000000">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:29.821689" elapsed="0.022723">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:30.863850" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:30.846944" elapsed="0.016906"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:30.863850" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:30.863850" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:30.864849" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:30.863850" elapsed="0.000999"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:30.864849" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:30.864849" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:30.864849" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:30.865849" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:30.864849" elapsed="0.001000">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:30.845938" elapsed="0.019911">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:31.884338" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:31.866332" elapsed="0.018006"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:31.884338" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:31.884338" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:31.885337" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:31.885337" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:31.885337" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:31.885337" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:31.886337" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:31.886337" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:31.885337" elapsed="0.001000">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:31.866332" elapsed="0.020005">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:32.902989" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:32.886683" elapsed="0.016306"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:32.903326" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:32.903326" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:32.903326" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:32.903326" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:32.903326" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:32.903326" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:32.904832" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:32.904832" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:32.903326" elapsed="0.001506">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:32.886683" elapsed="0.018149">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:33.924185" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:33.905248" elapsed="0.018937"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:33.925184" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:33.924185" elapsed="0.000999"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:33.925184" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:33.925184" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:33.925184" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:33.925184" elapsed="0.000999"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:33.926183" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:33.926183" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:33.926183" elapsed="0.000000">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:33.905248" elapsed="0.020935">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:34.943376" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:34.926367" elapsed="0.017009"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:34.944373" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:34.944373" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:34.944373" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:34.944373" elapsed="0.001001"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:34.945638" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:34.945374" elapsed="0.000264"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:34.946145" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:34.946145" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:34.946145" elapsed="0.000000">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:34.926367" elapsed="0.019778">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:35.962681" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:35.946625" elapsed="0.016056"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:35.963727" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:35.962681" elapsed="0.001046"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:35.963727" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:35.963727" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:35.963727" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:35.963727" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:35.964726" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:35.964726" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:35.964726" elapsed="0.000000">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:35.946625" elapsed="0.018101">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:36.982563" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:36.964903" elapsed="0.017660"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:36.983070" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:36.983070" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:36.983070" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:36.983070" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:36.984076" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:36.984076" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:36.984076" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:36.984076" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:36.984076" elapsed="0.001001">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:36.964903" elapsed="0.020174">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:38.002073" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:37.985657" elapsed="0.016416"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:38.003073" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:38.003073" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:38.003073" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:38.003073" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:38.004076" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:38.004076" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:38.004076" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:38.004076" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:38.004076" elapsed="0.000997">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:37.985164" elapsed="0.019909">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:39.022484" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:39.005420" elapsed="0.017064"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:39.022484" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:39.022484" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:39.023488" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:39.023488" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:39.023488" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:39.023488" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:39.024486" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:39.024486" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:39.023488" elapsed="0.000998">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:39.005420" elapsed="0.019066">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:40.042647" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:40.026135" elapsed="0.016512"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:40.043646" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:40.043646" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:40.044647" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:40.043646" elapsed="0.001001"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:40.044647" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:40.044647" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:40.045647" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:40.045647" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:40.044647" elapsed="0.001000">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:40.025059" elapsed="0.020588">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:41.062356" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:41.046841" elapsed="0.015515"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:41.062356" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:41.062356" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:41.063359" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:41.063359" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:41.063359" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:41.063359" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:41.063359" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:41.064358" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:41.063359" elapsed="0.000999">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:41.046174" elapsed="0.018184">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:42.082704" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:42.064579" elapsed="0.018125"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:42.083703" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:42.082704" elapsed="0.000999"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:42.083703" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:42.083703" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:42.084708" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:42.083703" elapsed="0.001005"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:42.084708" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:42.084708" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:42.084708" elapsed="0.000000">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:42.064579" elapsed="0.021124">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:43.103279" level="INFO">${quantity_text} = (11)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:43.086237" elapsed="0.017042"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:43.103279" level="INFO">${quantity_text_clean} = 11)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:43.103279" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:43.104278" level="INFO">${quantity_text_clean} = 11</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:43.104278" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:43.104278" level="INFO">${quantity_number} = 11.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:43.104278" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:43.105276" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-12-18T05:18:43.105276" level="FAIL">11.0 != 8.0</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2024-12-18T05:18:43.104278" elapsed="0.000998">11.0 != 8.0</status>
+</kw>
+<arg>8</arg>
+<status status="FAIL" start="2024-12-18T05:18:43.086237" elapsed="0.019039">11.0 != 8.0</status>
+</kw>
+<kw name="Check Amount In Cart">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:44.120199" level="INFO">${quantity_text} = (8)</msg>
+<var>${quantity_text}</var>
+<arg>${cart_item_count}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:44.106192" elapsed="0.014007"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:44.121200" level="INFO">${quantity_text_clean} = 8)</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text}</arg>
+<arg>(</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:44.121200" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-12-18T05:18:44.121200" level="INFO">${quantity_text_clean} = 8</msg>
+<var>${quantity_text_clean}</var>
+<arg>${quantity_text_clean}</arg>
+<arg>)</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-12-18T05:18:44.121200" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-12-18T05:18:44.122200" level="INFO">${quantity_number} = 8.0</msg>
+<var>${quantity_number}</var>
+<arg>${quantity_text_clean}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-12-18T05:18:44.121200" elapsed="0.001000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-18T05:18:44.122200" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${quantity_number}</arg>
+<arg>${goal}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-12-18T05:18:44.122200" elapsed="0.000000"/>
+</kw>
+<arg>8</arg>
+<status status="PASS" start="2024-12-18T05:18:44.105686" elapsed="0.016514"/>
+</kw>
+<arg>45 sec</arg>
+<arg>1 sec</arg>
+<arg>Check Amount In Cart</arg>
+<arg>8</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2024-12-18T05:18:28.755785" elapsed="15.366415"/>
+</kw>
+<kw name="Make Order">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:44.123200" level="INFO">Clicking element '//*[@id="_desktop_cart"]/div/div/a'.</msg>
+<arg>//*[@id="_desktop_cart"]/div/div/a</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:44.123200" elapsed="13.538395"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Shopping Cart</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:18:57.662596" elapsed="0.017744"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:18:57.681340" level="INFO">Clicking element 'xpath=//*[@id="main"]/div/div[2]/div[1]/div[2]/div/a'.</msg>
+<arg>xpath=//*[@id="main"]/div/div[2]/div[1]/div[2]/div/a</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:18:57.680340" elapsed="11.174552"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Addresses</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:19:08.854892" elapsed="0.029997"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:19:08.885889" level="INFO">Typing text 'SomeCoolAdress 85' into text field '//*[@id="field-address1"]'.</msg>
+<arg>//*[@id="field-address1"]</arg>
+<arg>SomeCoolAdress 85</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:19:08.885889" elapsed="0.156963"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:19:09.042852" level="INFO">Typing text '13-111' into text field '//*[@id="field-postcode"]'.</msg>
+<arg>//*[@id="field-postcode"]</arg>
+<arg>13-111</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:19:09.042852" elapsed="0.099511"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:19:09.142363" level="INFO">Typing text 'PgCity' into text field '//*[@id="field-city"]'.</msg>
+<arg>//*[@id="field-city"]</arg>
+<arg>PgCity</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:19:09.142363" elapsed="0.096160"/>
+</kw>
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:19:09.239048" level="INFO">Selecting options from selection list '//*[@id="field-id_country"]' by value 14.</msg>
+<arg>//*[@id="field-id_country"]</arg>
+<arg>14</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2024-12-18T05:19:09.239048" elapsed="0.046043"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:19:09.286091" level="INFO">Clicking button '//*[@id="delivery-address"]/div/footer/button'.</msg>
+<arg>//*[@id="delivery-address"]/div/footer/button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:19:09.285091" elapsed="20.067744"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Pick up in-store</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:19:29.352835" elapsed="0.014727"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:19:29.367562" level="INFO">Clicking button '//*[@id="delivery_option_6"]'.</msg>
+<arg>//*[@id="delivery_option_6"]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:19:29.367562" elapsed="0.074440"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:19:29.442002" level="INFO">Clicking button '//*[@id="js-delivery"]/button'.</msg>
+<arg>//*[@id="js-delivery"]/button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:19:29.442002" elapsed="21.439660"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>bank wire</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:19:50.881662" elapsed="0.024291"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:19:50.905953" level="INFO">Clicking button '//*[@id="payment-option-2"]'.</msg>
+<arg>//*[@id="payment-option-2"]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:19:50.905953" elapsed="0.089224"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:19:50.996177" level="INFO">Clicking button '//*[@id="conditions_to_approve[terms-and-conditions]"]'.</msg>
+<arg>//*[@id="conditions_to_approve[terms-and-conditions]"]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:19:50.996177" elapsed="0.098666"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:19:51.094843" level="INFO">Clicking button '//*[@id="payment-confirmation"]/div[1]/button'.</msg>
+<arg>//*[@id="payment-confirmation"]/div[1]/button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:19:51.094843" elapsed="40.983817"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Your order is confirmed</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:20:32.079662" elapsed="0.017031"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:20:32.097693" level="INFO">Clicking element 'xpath=//*[@id="_desktop_user_info"]/div/a[2]/span'.</msg>
+<arg>xpath=//*[@id="_desktop_user_info"]/div/a[2]/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:20:32.097693" elapsed="8.984621"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Your account</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:20:41.082314" elapsed="0.014001"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-12-18T05:20:41.096315" level="INFO">Clicking element '//*[@id="history-link"]'.</msg>
+<arg>//*[@id="history-link"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-18T05:20:41.096315" elapsed="8.869557"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Order history</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-18T05:20:49.965872" elapsed="0.012994"/>
+</kw>
+<status status="PASS" start="2024-12-18T05:18:44.122200" elapsed="125.857812"/>
+</kw>
+<status status="PASS" start="2024-12-18T05:14:09.433232" elapsed="400.546780"/>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-12-18T05:20:49.981014" elapsed="2.443385"/>
+</kw>
+<status status="PASS" start="2024-12-18T05:13:55.381068" elapsed="417.043331"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Cart Tests">Cart Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
