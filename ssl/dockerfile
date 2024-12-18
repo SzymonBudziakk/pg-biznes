@@ -2,10 +2,8 @@ FROM prestashop/prestashop:1.7.8
 
 RUN apt-get update && apt-get install -y openssl
 
-# Tworzenie katalogów dla certyfikatów
 RUN mkdir -p /etc/apache2/private && mkdir -p /etc/apache2/certs
 
-# Generowanie klucza i certyfikatu bezpośrednio w odpowiednich katalogach
 RUN openssl req -x509 -newkey rsa:4096 \
     -keyout /etc/apache2/private/localhost.key \
     -out /etc/apache2/certs/localhost.crt \
