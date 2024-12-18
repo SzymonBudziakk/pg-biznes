@@ -156,3 +156,64 @@ def create_product(category_id, name, price, description, lang="1"):
     else:
         print(f"An error occured: {response.status_code} {response.text}")
         return None
+    
+
+def enable_price_display(product_id):
+    product_url = f"{API_URL}/products/{product_id}"
+
+    try:
+        response = requests.get(product_url, headers=HEADERS, auth=(API_KEY, ''), verify=False)
+        if response.status_code != 200:
+            print(f"Failed to fetch product {product_id}: {response.status_code} - {response.text}")
+            return
+
+        root = ET.fromstring(response.content)
+        product = root.find("./product")
+        if product is None:
+            print(f"Product {product_id} not found in response.")
+            return
+
+        non_writable_fields = ["quantity", "manufacturer_name"]
+        for field in non_writable_fields:
+            elem = product.find(field)
+            if elem is not None:
+                product.remove(elem)
+
+        active_elem = product.find("active")
+        if active_elem is None:
+            ET.SubElement(product, "active").text = "1"
+        else:
+            active_elem.text = "1"
+
+        available_elem = product.find("available_for_order")
+        if available_elem is None:
+            ET.SubElement(product, "available_for_order").text = "1"
+        else:
+            available_elem.text = "1"
+
+        show_price_elem = product.find("show_price")
+        if show_price_elem is None:
+            ET.SubElement(product, "show_price").text = "1"
+        else:
+            show_price_elem.text = "1"
+
+        visibility_elem = product.find("visibility")
+        if visibility_elem is None:
+            ET.SubElement(product, "visibility").text = "both"
+        else:
+            visibility_elem.text = "both"
+
+        price_elem = product.find("price")
+        if price_elem is None or not price_elem.text or float(price_elem.text) <= 0:
+            ET.SubElement(product, "price").text = "1.00"
+
+        updated_product_data = ET.tostring(root, encoding="utf-8", method="xml").decode("utf-8")
+
+        update_response = requests.put(product_url, headers=HEADERS, data=updated_product_data, auth=(API_KEY, ''), verify=False)
+        if update_response.status_code == 200:
+            print(f"Product {product_id} updated successfully to show price.")
+        else:
+            print(f"Failed to update product {product_id}: {update_response.status_code} - {update_response.text}")
+
+    except Exception as e:
+        print(f"An error occurred while updating product {product_id}: {e}")
