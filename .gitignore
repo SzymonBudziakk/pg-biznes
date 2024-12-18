@@ -1,3 +1,4 @@
 /prestashop/var/cache/
+__pycache__/
 
 .env
